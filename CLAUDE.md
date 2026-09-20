@@ -13,6 +13,7 @@ cp .env.example .env                      # then set ANTHROPIC_API_KEY (must be 
 cd backend && uv run uvicorn app:app --reload --port 8000   # equivalent manual start
 ```
 
+- **Always use `uv` to run the server and to manage all dependencies. Never use `pip` directly.** Install with `uv sync`, add with `uv add <pkg>`, remove with `uv remove <pkg>`, and run anything with `uv run`. This keeps `pyproject.toml` and `uv.lock` in sync, so don't hand-edit the dependency list.
 - App: http://localhost:8000, Swagger docs: http://localhost:8000/docs
 - **The server must be started from `backend/`.** Paths are relative to the working directory: `../docs`, `../frontend`, `./chroma_db`.
 - There are no tests, linter or build step configured. The root `main.py` is an unused stub, not the entry point.
